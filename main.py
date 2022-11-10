@@ -4,7 +4,7 @@ from exceptions import FileAlreadyExistError
 from exceptions import InvalidPathError
 
 
-class TrieNode():
+class TrieNode:
     def __init__(self):
         self.is_file = False
         self.children = {}
@@ -14,7 +14,7 @@ class TrieNode():
         self.queue = []
 
 
-class FileSystem():
+class FileSystem:
 
     def __init__(self):
 

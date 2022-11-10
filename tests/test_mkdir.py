@@ -20,7 +20,7 @@ def test_mkdir_throws_exception_if_path_contain_file():
     with pytest.raises(InvalidPathError):
         file_system = FileSystem()
         file_system.mkdir("/a")
-        file_system.createFile("/a/file.txt")
+        file_system.create_file("/a/file.txt")
         file_system.mkdir("/a/file.txt/b")  # InvalidPathError
 
 

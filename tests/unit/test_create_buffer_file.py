@@ -1,27 +1,27 @@
 import pytest
 
-from exceptions import FileAlreadyExistError
-from exceptions import InvalidPathError
-from main import FileSystem
+from Exceptions.exceptions import FileAlreadyExistError
+from Exceptions.exceptions import InvalidPathError
+from Application.Service.FileSystemService import FileSystemService
 
 
 def test_create_buffer_file_throw_exception_if_path_invalid():
     with pytest.raises(InvalidPathError):
-        file_system = FileSystem()
+        file_system = FileSystemService()
         file_system.mkdir("/a")
         file_system.create_buffer_file("/a/b/log.txt")  # InvalidPathError
 
 
 def test_create_buffer_file_throw_exception_if_file_already_exist():
     with pytest.raises(FileAlreadyExistError):
-        file_system = FileSystem()
+        file_system = FileSystemService()
         file_system.mkdir("/a")
         file_system.create_buffer_file("/a/log.txt")
         file_system.create_buffer_file("/a/log.txt")  # FileAlreadyExistError
 
 
 def test_create_buffer_file_success():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a")
     file_system.create_buffer_file("/a/logA1.txt")
     file_system.create_buffer_file("/a/logA2.txt")

@@ -1,11 +1,11 @@
 import pytest
 
-from exceptions import InvalidPathError
-from main import FileSystem
+from Application.Service.FileSystemService import FileSystemService
+from Exceptions.exceptions import InvalidPathError
 
 
 def test_move_node_success():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a/b")
     file_system.mkdir("/a/c")
     file_system.move_node("/a/b", "/a/c")
@@ -16,7 +16,7 @@ def test_move_node_success():
 
 
 def test_move_node_throw_exception_if_new_path_start_with_old_path():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a/b")
     file_system.mkdir("/a/b/c")
     with pytest.raises(InvalidPathError):
@@ -24,14 +24,14 @@ def test_move_node_throw_exception_if_new_path_start_with_old_path():
 
 
 def test_delete_node_throw_exception_if_new_path_invalid():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a/b")
     with pytest.raises(InvalidPathError):
         file_system.move_node("/a/b", "/a/c")
 
 
 def test_delete_node_throw_exception_if_old_path_invalid():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a/c")
     with pytest.raises(InvalidPathError):
         file_system.move_node("/a/b", "/a/c")

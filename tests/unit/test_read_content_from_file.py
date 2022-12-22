@@ -1,11 +1,11 @@
 import pytest
 
-from exceptions import InvalidPathError
-from main import FileSystem
+from Application.Service.FileSystemService import FileSystemService
+from Exceptions.exceptions import InvalidPathError
 
 
 def test_read_content_from_file_throw_exception_if_file_path_invalid():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a")
     file_system.create_file("/a/log.txt")
     with pytest.raises(InvalidPathError):
@@ -13,14 +13,14 @@ def test_read_content_from_file_throw_exception_if_file_path_invalid():
 
 
 def test_read_content_from_file_throw_exception_if_file_path_is_directory():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a")
     with pytest.raises(PermissionError):
         file_system.read_content_from_file("/a")
 
 
 def test_read_content_from_file_success_if_file_is_binary_or_log():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a")
     file_system.create_file("/a/log.txt")
     file_system.add_content_to_file("/a/log.txt", "Log content")
@@ -30,7 +30,7 @@ def test_read_content_from_file_success_if_file_is_binary_or_log():
 
 
 def test_read_content_from_file_success_if_file_is_buffer():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a")
     file_system.create_buffer_file("/a/file.buff")
     file_system.add_content_to_file("/a/file.buff", "data-1")

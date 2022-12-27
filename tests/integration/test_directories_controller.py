@@ -1,7 +1,7 @@
 def test_get_method(client):
     response = client.get('/directories')
     assert response.status_code == 200
-    assert b'[]' in response.data
+    assert b'["avava", "binaryfilesfolder", "bufferfilesfolder"]' in response.data
 
 
 def test_get_method_error(client):
@@ -18,7 +18,7 @@ def test_post_method(client):
 
     response = client.get('/directories')
     assert response.status_code == 200
-    assert b'"a", "c"' in response.data
+    assert b'"a", "avava", "binaryfilesfolder", "bufferfilesfolder", "c"' in response.data
 
     response = client.get('/directories?path=/a')
     assert response.status_code == 200

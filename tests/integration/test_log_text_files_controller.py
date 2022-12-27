@@ -45,11 +45,6 @@ def test_get_method_file_path_error(client):
     response.status_code = 400
 
 
-def test_get_method_permission_error(client):
-    response = client.get('/logtextfiles?path=/avava')
-    response.status_code = 400
-
-
 def test_delete_method(client):
     response = client.delete('/logtextfiles?path=/logtextfilesfolder/logtextfile1')
     assert response.status_code == 200

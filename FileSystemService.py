@@ -1,8 +1,8 @@
 import os
 
-from Domain.Entity.TrieNode import TrieNode
-from Exceptions.exceptions import FileAlreadyExistError
-from Exceptions.exceptions import InvalidPathError
+from FileAlreadyExistError import FileAlreadyExistError
+from InvalidPathError import InvalidPathError
+from TrieNode import TrieNode
 
 
 class FileSystemService:
@@ -80,7 +80,10 @@ class FileSystemService:
         if not curr.is_file:
             raise PermissionError("Unable to read content from directory")
         if curr.is_buffer:
-            return curr.queue.pop(0)
+            try:
+                return curr.queue.pop()
+            except IndexError:
+                return ''
         return curr.content
 
     def create_file(self, file_path):

@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_restful import Api
 
-from Infrastructure.Rest.BinaryFilesController import BinaryFilesController
-from Infrastructure.Rest.BufferFilesController import BufferFilesController
-from Infrastructure.Rest.DirectoriesController import DirectoriesController
-from Infrastructure.Rest.LogTextFilesController import LogTextFilesController
+from BinaryFilesController import BinaryFilesController
+from BufferFilesController import BufferFilesController
+from DirectoriesController import DirectoriesController
+from LogTextFilesController import LogTextFilesController
 
 app = Flask(__name__)
 api = Api(app)
@@ -14,4 +14,4 @@ api.add_resource(LogTextFilesController, '/logtextfiles')
 api.add_resource(DirectoriesController, '/directories')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5000)

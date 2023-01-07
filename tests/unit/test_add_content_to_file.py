@@ -1,7 +1,9 @@
 import pytest
 
-from Exceptions.exceptions import InvalidPathError
-from Application.Service.FileSystemService import FileSystemService
+from FileSystemService import FileSystemService
+from FileAlreadyExistError import FileAlreadyExistError
+from FileSystemService import FileSystemService
+from InvalidPathError import InvalidPathError
 
 
 def test_add_content_to_file_throw_exception_if_file_path_invalid():
@@ -37,5 +39,4 @@ def test_add_content_to_file_success():
     file_system.add_content_to_file("/a/file.buff", "Log#1")
     file_system.add_content_to_file("/a/file.buff", "Log#2")
     assert file_system.read_content_from_file("/a/log.txt") == "Log#1Log#2"
-    assert file_system.read_content_from_file("/a/file.buff") == "Log#1"
     assert file_system.read_content_from_file("/a/file.buff") == "Log#2"

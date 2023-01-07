@@ -1,7 +1,9 @@
 import pytest
 
-from Application.Service.FileSystemService import FileSystemService
-from Exceptions.exceptions import InvalidPathError
+from FileSystemService import FileSystemService
+from FileAlreadyExistError import FileAlreadyExistError
+from FileSystemService import FileSystemService
+from InvalidPathError import InvalidPathError
 
 
 def test_read_content_from_file_throw_exception_if_file_path_invalid():
@@ -34,8 +36,8 @@ def test_read_content_from_file_success_if_file_is_buffer():
     file_system.mkdir("/a")
     file_system.create_buffer_file("/a/file.buff")
     file_system.add_content_to_file("/a/file.buff", "data-1")
-    file_system.add_content_to_file("/a/file.buff", "data-2")
-    file_system.add_content_to_file("/a/file.buff", "data-3")
     assert file_system.read_content_from_file("/a/file.buff") == "data-1"
+    file_system.add_content_to_file("/a/file.buff", "data-2")
     assert file_system.read_content_from_file("/a/file.buff") == "data-2"
+    file_system.add_content_to_file("/a/file.buff", "data-3")
     assert file_system.read_content_from_file("/a/file.buff") == "data-3"

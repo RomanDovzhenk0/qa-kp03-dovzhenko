@@ -1,20 +1,11 @@
 import os
 
-from exceptions import FileAlreadyExistError
-from exceptions import InvalidPathError
+from Domain.Entity.TrieNode import TrieNode
+from Exceptions.exceptions import FileAlreadyExistError
+from Exceptions.exceptions import InvalidPathError
 
 
-class TrieNode:
-    def __init__(self):
-        self.is_file = False
-        self.children = {}
-        self.content = ""
-        self.is_binary = False
-        self.is_buffer = False
-        self.queue = []
-
-
-class FileSystem:
+class FileSystemService:
 
     def __init__(self):
 
@@ -153,3 +144,6 @@ class FileSystem:
         if path == '/':
             return []
         return path.split('/')[1:]
+
+
+service = FileSystemService()

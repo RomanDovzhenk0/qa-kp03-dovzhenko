@@ -1,11 +1,11 @@
 import pytest
 
-from exceptions import InvalidPathError
-from main import FileSystem
+from Application.Service.FileSystemService import FileSystemService
+from Exceptions.exceptions import InvalidPathError
 
 
 def test_delete_node_success():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a/b")
     file_system.mkdir("/a/c")
     file_system.mkdir("/a/c/d")
@@ -17,7 +17,7 @@ def test_delete_node_success():
 
 
 def test_delete_node_throw_exception_if_path_invalid():
-    file_system = FileSystem()
+    file_system = FileSystemService()
     file_system.mkdir("/a/b")
     file_system.mkdir("/a/c")
     file_system.mkdir("/a/c/d")
